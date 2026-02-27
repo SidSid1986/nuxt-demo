@@ -2,64 +2,134 @@
  * @Author: Sid Li
  * @Date: 2025-10-24 10:04:40
  * @LastEditors: Sid Li
- * @LastEditTime: 2025-10-24 10:04:46
- * @FilePath: \nuxt-simple-demo\app\pages\index.vue
+ * @LastEditTime: 2026-02-27 16:13:33
+ * @FilePath: \nuxt-free\app\pages\index.vue
  * @Description: 
 -->
 <!-- app/pages/index.vue -->
 <template>
-  <div style="max-width: 800px; margin: 0 auto; padding: 0 20px;">
-    <!-- 引入导航栏组件 -->
-    <Navbar />
-
-    <!-- 首页内容 -->
-    <h1 style="color: #2c3e50;">Nuxt 3 极简 Demo</h1>
-    <p>这是一个新手友好的 Nuxt 入门示例，包含以下功能：</p>
-    <ul style="line-height: 2;">
-      <li>✅ 导航栏组件复用</li>
-      <li>✅ 静态数据展示（如下方个人信息）</li>
-      <li>✅ 动态路由跳转（点击用户列表）</li>
-    </ul>
-
-    <!-- 静态数据展示 -->
-    <div style="margin-top: 30px; border: 1px solid #eee; padding: 20px; border-radius: 8px;">
-      <h3>个人信息（静态数据）</h3>
-      <!-- 加载 public 文件夹下的图片 -->
-      <img src="/avatar.jpg" alt="头像" style="width: 150px; border-radius: 50%;" />
-      <p>姓名：Nuxt 新手</p>
-      <p>学习目标：掌握 Nuxt 基础路由和组件</p>
+  <div class="index-container">
+    <div class="nav-container">
+      <Navbar />
+    </div>
+    <div class="carousel-container">
+      <IndexSwiper
+        ref="treatSwiperRef"
+        :swiperData="swiperData"
+        :activeIndex="testIndex"
+      />
     </div>
 
-    <!-- 动态路由跳转入口：点击跳转到对应用户的详情页 -->
-    <div style="margin-top: 30px;">
-      <h3>用户列表（点击查看详情）</h3>
-      <div 
-        v-for="user in userList" 
-        :key="user.id"
-        style="margin: 10px 0; padding: 10px; border: 1px solid #ddd; cursor: pointer;"
-        @click="goToUserDetail(user.id)"
-      >
-        用户名：{{ user.name }} → 点击查看 ID: {{ user.id }} 的详情
-      </div>
+    <div class="main-business">
+      <MainBusiness />
+    </div>
+
+    <div class="main-product">
+      <MainProduct />
+    </div>
+
+    <div class="main-demo">
+      <Demo />
     </div>
   </div>
 </template>
 
 <script setup>
-// 1. 引入导航栏组件（Nuxt 3 自动导入，无需手动 import，但写了也不报错）
-import Navbar from '@/components/Navbar.vue'
+import Navbar from "@/components/Navbar.vue";
+import IndexSwiper from "@/components/IndexSwiper.vue";
+import MainBusiness from "@/components/MainBusiness.vue";
+import MainProduct from "@/components/MainProduct.vue";
+import Demo from "@/components/Demo.vue";
 
-// 2. 引入 Nuxt 内置的路由跳转工具（类似 Vue Router 的 useRouter）
-const router = useRouter()
+const router = useRouter();
 
-// 3. 静态数据（模拟后端返回的用户列表）
-const userList = [
-  { id: 1, name: "张三", age: 25, job: "前端开发" },
-  { id: 2, name: "李四", age: 28, job: "后端开发" }
-]
+const swiperData = ref([
+  { id: 1, url: "/images/1.png" },
+  { id: 2, url: "/images/2.png" },
+  { id: 3, url: "/images/3.png" },
+]);
 
-// 4. 点击跳转函数：跳转到动态路由 /user/[id]
-const goToUserDetail = (userId) => {
-  router.push(`/user/${userId}`)
-}
+const testIndex = ref(-1);
 </script>
+<style scoped lang="scss">
+.index-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .nav-container {
+  }
+  .carousel-container {
+    height: 75vh;
+    border: 1px solid red;
+    margin-top: 2vh;
+  }
+  .main-business {
+    width: 65%;
+  }
+
+  .main-product {
+    width: 65%;
+  }
+
+  .main-demo {
+    width: 70%;
+  }
+}
+</style>
+<style>
+/* 1. 移除 body 和 html 的默认边距 */
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  /* 防止出现横向滚动条 */
+  overflow-x: hidden;
+}
+
+/* 2. 简单的 Reset (类似 normalize) */
+/* 移除所有元素的默认盒模型计算差异 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 移除常用标签的默认上下边距 */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul,
+ol,
+dl,
+dd,
+figure,
+blockquote {
+  margin: 0;
+  padding: 0;
+}
+
+/* 移除列表样式 */
+ul,
+ol {
+  list-style: none;
+}
+
+/* 移除图片默认的下边距 */
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* 移除链接默认颜色和下划线 */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+</style>

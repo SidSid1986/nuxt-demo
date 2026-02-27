@@ -2,8 +2,8 @@
  * @Author: Sid Li
  * @Date: 2025-10-24 10:05:17
  * @LastEditors: Sid Li
- * @LastEditTime: 2025-10-24 10:08:35
- * @FilePath: \nuxt-simple-demo\app\pages\user\[id].vue
+ * @LastEditTime: 2025-10-25 15:11:06
+ * @FilePath: \nuxt-demo\app\pages\user\[id].vue
  * @Description: 
 -->
 <!-- app/pages/user/[id].vue -->
@@ -68,6 +68,7 @@ const { data: user, isLoading } = await useAsyncData(
   `user-${userId}`,
   // 异步函数：模拟接口请求（1 秒后返回数据，模拟网络延迟）
   async () => {
+    console.log("模拟从后端获取用户详情");
     // 实际项目中这里会用 axios/fetch 调用后端接口，比如：
     // const res = await fetch(`/api/user/${userId}`)
     // return res.json()
