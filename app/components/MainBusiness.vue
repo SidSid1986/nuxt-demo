@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-02-27 15:15:13
+ * @LastEditTime: 2026-02-28 13:53:33
  * @FilePath: \nuxt-free\app\components\MainBusiness.vue
  * @Description: 
 -->
@@ -75,10 +75,10 @@ onMounted(() => {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    margin: 10vh 0 6vh 0;
+    margin: 6vh 0 6vh 0;
 
     width: 100%;
-    height: 10%;
+    height: 10vh;
     border: 2px solid red;
     box-sizing: border-box;
     .title-zh {

@@ -12,28 +12,35 @@
       :speed="800"
       @swiper="onSwiper"
       @slideChange="onSlideChange"
+      :init="treatData.length > 0"
     >
       <swiper-slide
         class="page-slide"
         v-for="(pageData, pageIndex) in treatData"
         :key="`page-${pageIndex}`"
       >
-        <img :src="pageData.url" alt="" />
+        <!-- 新增：图片加载错误兜底 + 懒加载，避免请求中止 -->
+        <img
+          :src="pageData.url"
+          alt="轮播图"
+          loading="lazy"
+          @error="handleImgError(pageData)"
+        />
       </swiper-slide>
     </swiper>
     <div class="swiper-button-container">
       <span class="custom-swiper-button-prev" @click="goPrev">
-        <img src="/images/prev.png" alt="" />
+        <img src="/images/prev.png" alt="上一页" loading="lazy" />
       </span>
       <span class="custom-swiper-button-next" @click="goNext">
-        <img src="/images/next.png" alt="" />
+        <img src="/images/next.png" alt="下一页" loading="lazy" />
       </span>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onUnmounted, onMounted, nextTick, computed } from "vue";
+import { ref, watch, onUnmounted, onMounted, nextTick } from "vue";
 import { Swiper, SwiperSlide } from "swiper/vue";
 import "swiper/css";
 import { Navigation, Autoplay } from "swiper/modules";
@@ -44,7 +51,7 @@ const treatData = ref([]);
 const swiperInstance = ref(null);
 
 const autoplayOptions = {
-  delay: 3000, // 自动播放间隔
+  delay: 3000,
   disableOnInteraction: false,
   pauseOnMouseEnter: true,
 };
@@ -61,16 +68,23 @@ const props = defineProps({
   },
 });
 
+// 修复：数据更新后等待DOM渲染完成再赋值，避免初始化异常
 watch(
   () => props.swiperData,
-  (newVal) => {
+  async (newVal) => {
     console.log(newVal);
-    treatData.value = newVal;
+    await nextTick(); // 等待DOM更新
+    treatData.value = newVal || [];
   },
-  { immediate: true }
+  { immediate: true, deep: true }
 );
 
 const emit = defineEmits(["swiperChange"]);
+
+// 新增：图片加载错误兜底，避免请求中止
+const handleImgError = (item) => {
+  item.url = "/images/default.png"; // 替换为默认图（需提前准备）
+};
 
 const goPrev = () => {
   if (swiperInstance.value) {
@@ -92,8 +106,13 @@ const onSlideChange = (swiper) => {
   emit("swiperChange", swiper.activeIndex);
 };
 
-onMounted(() => {});
-onUnmounted(() => {});
+// 组件卸载时销毁Swiper实例，避免内存泄漏和请求中断
+onUnmounted(() => {
+  if (swiperInstance.value) {
+    swiperInstance.value.destroy(true, true);
+    swiperInstance.value = null;
+  }
+});
 
 defineExpose({
   treatData,
@@ -104,22 +123,21 @@ defineExpose({
 <style scoped lang="scss">
 .swiper-main {
   width: 100%;
+  height: 100%; // 核心：继承父容器（carousel-container）的75vh高度
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  height: 100%;
   position: relative;
   border: 1px solid red;
-  /* 新增：防止容器溢出 */
   overflow: hidden;
 }
 
 .home-swiper {
   box-sizing: border-box;
   width: 100%;
-  height: 100%;
+  height: 100%; // 继承父容器高度
   color: #ffffff;
   font-size: 16px;
 
@@ -137,11 +155,9 @@ defineExpose({
     width: 100% !important;
     height: 100% !important;
     box-sizing: border-box;
-    /* 核心：让slide居中展示图片，不裁剪 */
     display: flex;
     align-items: center;
     justify-content: center;
-    /* 防止slide内内容溢出 */
     overflow: hidden;
   }
 }
@@ -151,19 +167,9 @@ defineExpose({
   height: 100%;
   img {
     width: auto;
-    height: 100%;
+    height: 100%; // 强制高度100%，宽度自适应
+    object-fit: cover; // 填充容器，避免变形
   }
-}
-
-.swiper-item {
-  flex: 1;
-  max-width: 32%;
-  box-sizing: border-box;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
 }
 
 .swiper-button-container {
@@ -172,13 +178,12 @@ defineExpose({
   height: 15vh;
   cursor: pointer;
   position: absolute;
-
   right: 10vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  background-color: rgb(16, 26, 51, 0.4);
+  background-color: rgba(16, 26, 51, 0.4);
 
   .custom-swiper-button-prev {
     z-index: 99;
@@ -204,7 +209,6 @@ defineExpose({
     justify-content: center;
     align-items: center;
     border-top: 1px solid transparent;
-
     img {
       display: inline-block;
       width: 3vh;
