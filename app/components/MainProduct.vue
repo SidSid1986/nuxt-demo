@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 14:33:52
+ * @LastEditTime: 2026-03-02 16:25:34
  * @FilePath: \nuxt-free\app\components\MainProduct.vue
  * @Description: 
 -->
@@ -97,13 +97,13 @@ onMounted(() => {
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    // border: 2px solid red;
+
     box-sizing: border-box;
 
     height: 45vh;
 
     .product-content-left-img {
-      width: 50%;
+      width: 44%;
       height: 100%;
       // border: 3px solid green;
       box-sizing: border-box;
@@ -157,19 +157,25 @@ onMounted(() => {
           flex-direction: column;
           justify-content: center;
           align-items: center;
-          width: 30%;
+          width: 33%;
           height: 100%;
+          box-sizing: border-box;
+          // img {
+          //   border:1px solid red;
+          // }
         }
       }
     }
     .more-btn {
+      width: 6%;
       font-size: 18px;
       color: #1262ad;
       height: 3vh;
       line-height: 3vh;
-      // border: 1px solid #1262ad;
+      border: 1px solid #1262ad;
       cursor: pointer;
       padding: 0 10px;
+      box-sizing: border-box;
     }
 
     .more-btn:hover {

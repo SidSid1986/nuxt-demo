@@ -169,7 +169,7 @@ defineExpose({
   img {
     width: auto;
     height: 100%;
-    object-fit: cover;
+    // object-fit: cover;
   }
 }
 

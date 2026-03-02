@@ -64,7 +64,7 @@ const initPlyr = async () => {
     const videoEl = playerWrap.value.querySelector(".plyr-video");
     if (videoEl) {
       plyrInstance = new Plyr(videoEl, props.plyrOptions);
-      
+
       // 监听容器尺寸变化（精准响应父容器缩放）
       resizeObserver = new ResizeObserver(() => {
         updateVideoSize();
@@ -79,13 +79,16 @@ onMounted(() => {
 });
 
 // 监听视频地址变化
-watch(() => props.videoUrl, () => {
-  if (plyrInstance) {
-    plyrInstance.destroy();
-    plyrInstance = null;
-    initPlyr();
+watch(
+  () => props.videoUrl,
+  () => {
+    if (plyrInstance) {
+      plyrInstance.destroy();
+      plyrInstance = null;
+      initPlyr();
+    }
   }
-});
+);
 
 // 组件卸载时销毁
 onUnmounted(() => {

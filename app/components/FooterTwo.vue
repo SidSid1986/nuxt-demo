@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-28 15:12:20
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 14:30:00
+ * @LastEditTime: 2026-03-02 16:28:27
  * @FilePath: \nuxt-free\app\components\FooterTwo.vue
  * @Description: 
 -->
@@ -59,6 +59,9 @@ onMounted(() => {
     margin: 0 10px;
     color: #666666;
     cursor: pointer;
+  }
+  .footer-two-tab:hover {
+    color: #ffffff;
   }
 }
 </style>

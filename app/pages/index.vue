@@ -71,7 +71,7 @@ const swiperData = ref([
 ]);
 const testIndex = ref(-1);
 
-// 回到顶部按钮核心逻辑
+// 回到顶部按钮
 const isShowBackTop = ref(false);
 const scrollThreshold = 300;
 let scrollHandler = null;

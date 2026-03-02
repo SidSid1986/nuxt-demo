@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 14:31:02
+ * @LastEditTime: 2026-03-02 15:58:45
  * @FilePath: \nuxt-free\app\components\MainBusiness.vue
  * @Description: 
 -->
@@ -98,7 +98,7 @@ onMounted(() => {
     align-items: center;
 
     width: 100%;
-    height: 40vh;
+    height: 36vh;
     // border: 5px solid red;
     box-sizing: border-box;
     .business-content-item {
@@ -106,7 +106,7 @@ onMounted(() => {
       flex-direction: column;
       justify-content: space-between;
       align-items: start;
-      width: 25%;
+      width: 22%;
       height: 100%;
       // border: 2px solid red;
       box-sizing: border-box;
@@ -124,11 +124,11 @@ onMounted(() => {
         justify-content: space-between;
         align-items: start;
         // border: 3px solid yellow;
-        height: 10vh;
+        height: 5vh;
 
         span {
           font-size: 20px;
-          margin: 1vh 0 0.5vh 0;
+          // margin: 1vh 0 0.5vh 0;
           // border: 3px solid blue;
         }
         .item-line {

@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 14:28:46
+ * @LastEditTime: 2026-03-02 16:28:04
  * @FilePath: \nuxt-free\app\components\Demo.vue
  * @Description: 
 -->
@@ -144,12 +144,12 @@ onMounted(() => {
         &::after {
           content: "";
           position: absolute;
-          left: 50%; // 水平居中
-          top: 25%; // 垂直向上偏移，让竖线变短
-          transform: translateX(-50%); // 精准居中
-          width: 1px; // 竖线宽度
-          height: 50%; // 竖线高度（50%=tab高度的一半，短竖线）
-          background-color: #ccc; // 竖线颜色，可自定义
+          left: 50%;
+          top: 25%;
+          transform: translateX(-50%);
+          width: 1px;
+          height: 50%;
+          background-color: #ccc;
         }
       }
       .tab-span {
@@ -192,7 +192,7 @@ onMounted(() => {
           height: 70vh;
           width: 48%;
           // border: 2px solid green;
-          padding: 2vh 0 0 5vh;
+          padding: 1vh 0 0 5vh;
           display: flex;
           flex-direction: column;
           align-items: flex-start;
@@ -201,9 +201,9 @@ onMounted(() => {
           span {
             font-size: 20px;
             font-weight: bold;
+            margin-bottom: 1vh;
           }
 
-          // 给播放器父容器加一个类，保证自适应
           :deep(.plyr-aspect-ratio-wrap) {
             width: 100%;
             max-width: 100%;
