@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-02-28 13:54:39
+ * @LastEditTime: 2026-03-02 09:44:56
  * @FilePath: \nuxt-free\app\components\Demo.vue
  * @Description: 
 -->
@@ -36,8 +36,7 @@
             <PlyrPlayer
               videoUrl="/images/shang.mp4"
               posterUrl="/images/shangV.jpg"
-              playerWidth="100%"
-              playerHeight="35vh"
+              aspectRatio="56.25%"
               :plyrOptions="{
                 loop: true,
                 autoplay: false,
@@ -185,13 +184,13 @@ onMounted(() => {
 
         .img-left {
           height: 70vh;
-          width: 50%;
+          width: 52%;
           border: 2px solid green;
         }
 
         .img-right {
           height: 70vh;
-          width: 50%;
+          width: 48%;
           border: 2px solid green;
           padding: 2vh 0 0 5vh;
           display: flex;
@@ -204,10 +203,18 @@ onMounted(() => {
             font-weight: bold;
           }
 
+          // 给播放器父容器加一个类，保证自适应
+          :deep(.plyr-aspect-ratio-wrap) {
+            width: 100%;
+            max-width: 100%;
+            box-sizing: border-box;
+          }
+
           img {
             width: 100%;
             height: 28vh;
             border: 2px solid blue;
+            object-fit: contain;
           }
         }
       }

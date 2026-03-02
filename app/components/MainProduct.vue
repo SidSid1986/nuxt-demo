@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-02-28 13:54:31
+ * @LastEditTime: 2026-03-02 09:13:38
  * @FilePath: \nuxt-free\app\components\MainProduct.vue
  * @Description: 
 -->
@@ -14,7 +14,7 @@
     </div>
 
     <div class="product-content">
-      <img src="/images/p.png" alt="" />
+      <img class="product-content-left-img" src="/images/p.png" alt="" />
       <div class="product-content-right">
         <span class="product-title-zh">TRIO系列产品</span>
         <span class="product-desc">
@@ -99,9 +99,14 @@ onMounted(() => {
     width: 100%;
     border: 2px solid red;
     box-sizing: border-box;
-    img {
-      width: auto;
+
+    height: 45vh;
+
+    .product-content-left-img {
+      width: 50%;
       height: 100%;
+      border: 3px solid green;
+      box-sizing: border-box;
     }
 
     .product-content-right {

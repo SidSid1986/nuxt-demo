@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-02-28 14:18:05
+ * @LastEditTime: 2026-03-02 08:39:20
  * @FilePath: \nuxt-free\app\components\News.vue
  * @Description: 
 -->
@@ -116,8 +116,8 @@ onMounted(() => {
         height: 30vh;
         border: 3px solid green;
         box-sizing: border-box;
-        object-fit: cover;
-        object-position: center;
+        // object-fit: cover;
+        // object-position: center;
       }
 
       .news-content-item-text {

@@ -1,16 +1,13 @@
 <template>
-  <!-- client-only 确保仅在客户端渲染 -->
   <client-only>
-    <!-- 新增：通过props接收自定义宽高，默认100%/30vh -->
-    <div
-      class="plyr-player-wrap"
-      ref="playerWrap"
-      :style="{ width: playerWidth, height: playerHeight }"
-    >
-      <video controls :poster="posterUrl" class="plyr-video" :playsinline="true">
-        <source :src="videoUrl" :type="videoType" />
-        您的浏览器不支持HTML5视频播放，请升级浏览器
-      </video>
+    <!-- 新增：宽高比容器（关键！保证视频比例不变） -->
+    <div class="plyr-aspect-ratio-wrap" :style="{ paddingBottom: aspectRatio }">
+      <div class="plyr-player-wrap" ref="playerWrap">
+        <video controls :poster="posterUrl" class="plyr-video" playsinline>
+          <source :src="videoUrl" :type="videoType" />
+          您的浏览器不支持HTML5视频播放，请升级浏览器
+        </video>
+      </div>
     </div>
   </client-only>
 </template>
@@ -18,24 +15,10 @@
 <script setup>
 import { ref, onMounted, onUnmounted, watch } from "vue";
 
-// 纯JS版Props定义（新增宽高自定义Props）
 const props = defineProps({
-  // 视频地址（必填）
-  videoUrl: {
-    type: String,
-    required: true,
-  },
-  // 视频封面（可选）
-  posterUrl: {
-    type: String,
-    default: "",
-  },
-  // 视频类型（可选）
-  videoType: {
-    type: String,
-    default: "video/mp4",
-  },
-  // Plyr配置项（可选）
+  videoUrl: { type: String, required: true },
+  posterUrl: { type: String, default: "" },
+  videoType: { type: String, default: "video/mp4" },
   plyrOptions: {
     type: Object,
     default: () => ({
@@ -45,101 +28,130 @@ const props = defineProps({
       loop: false,
     }),
   },
-  // 新增：播放器宽度（默认100%）
-  playerWidth: {
+  // 新增：宽高比（默认16:9，可自定义）
+  aspectRatio: {
     type: String,
-    default: "100%",
-  },
-  // 新增：播放器高度（默认30vh）
-  playerHeight: {
-    type: String,
-    default: "30vh",
+    default: "56.25%", // 16:9 = 9/16=56.25%
   },
 });
 
 const playerWrap = ref(null);
-let plyrInstance = null; // 去掉TS类型，直接定义
+let plyrInstance = null;
+let resizeObserver = null; // 用ResizeObserver监听容器变化（比resize事件更精准）
 
-// 初始化播放器（纯JS版，无类型断言）
-const initPlyr = async () => {
-  // 用import.meta.client判断客户端环境（无需process）
-  if (import.meta.client && playerWrap.value) {
-    // 动态导入Plyr
-    const Plyr = (await import("plyr")).default;
-    // 导入样式
-    import("plyr/dist/plyr.css");
-
-    // 获取video元素（JS版无需类型断言）
+// 强制更新视频尺寸
+const updateVideoSize = () => {
+  if (plyrInstance && playerWrap.value) {
+    // 强制重绘Plyr
+    plyrInstance.elements.container.style.width = "100%";
+    plyrInstance.elements.container.style.height = "100%";
+    plyrInstance.refresh();
+    // 强制视频元素适配
     const videoEl = playerWrap.value.querySelector(".plyr-video");
     if (videoEl) {
-      plyrInstance = new Plyr(videoEl, props.plyrOptions);
+      videoEl.style.width = "100%";
+      videoEl.style.height = "100%";
     }
   }
 };
 
-// 组件挂载时初始化
+// 初始化播放器
+const initPlyr = async () => {
+  if (import.meta.client && playerWrap.value) {
+    const Plyr = (await import("plyr")).default;
+    import("plyr/dist/plyr.css");
+
+    const videoEl = playerWrap.value.querySelector(".plyr-video");
+    if (videoEl) {
+      plyrInstance = new Plyr(videoEl, props.plyrOptions);
+      
+      // 监听容器尺寸变化（精准响应父容器缩放）
+      resizeObserver = new ResizeObserver(() => {
+        updateVideoSize();
+      });
+      resizeObserver.observe(playerWrap.value);
+    }
+  }
+};
+
 onMounted(() => {
   initPlyr();
 });
 
-// 监听视频地址变化，重新初始化
-watch(
-  () => props.videoUrl,
-  () => {
-    if (plyrInstance) {
-      plyrInstance.destroy();
-      plyrInstance = null;
-      initPlyr();
-    }
+// 监听视频地址变化
+watch(() => props.videoUrl, () => {
+  if (plyrInstance) {
+    plyrInstance.destroy();
+    plyrInstance = null;
+    initPlyr();
   }
-);
+});
 
-// 组件卸载时销毁实例
+// 组件卸载时销毁
 onUnmounted(() => {
+  // 销毁ResizeObserver
+  if (resizeObserver) {
+    resizeObserver.disconnect();
+    resizeObserver = null;
+  }
+  // 销毁Plyr实例
   if (plyrInstance && import.meta.client) {
     plyrInstance.destroy();
     plyrInstance = null;
   }
 });
 
-// 暴露方法给父组件
 defineExpose({
   play: () => plyrInstance?.play(),
   pause: () => plyrInstance?.pause(),
   togglePlay: () => plyrInstance?.togglePlay(),
+  refresh: updateVideoSize,
 });
 </script>
 
 <style scoped lang="scss">
-.plyr-player-wrap {
-  /* 移除原有宽高，改为通过props动态控制 */
-  margin: 0 auto;
-  /* 核心：让容器成为相对定位，内部视频绝对定位填充 */
+/* 核心：宽高比容器（保证视频比例不变） */
+.plyr-aspect-ratio-wrap {
+  width: 100%;
   position: relative;
   overflow: hidden;
-
-  .plyr-video {
-    /* 绝对定位填充整个容器 */
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 保证视频填充容器且比例正常 */
-    object-fit: cover;
-    // object-fit: contain; //视频完整显示（不裁剪）
-  }
+  // 去掉固定高度，完全靠padding-bottom控制比例
 }
 
-/* 自定义Plyr样式 */
+.plyr-player-wrap {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.plyr-video {
+  width: 100% !important;
+  height: 100% !important;
+  // 关键：用contain代替cover，保证视频完整显示
+  object-fit: contain !important;
+}
+
+/* 强制Plyr完全适配容器 */
 :deep(.plyr) {
   --plyr-color-main: #1e50ae;
   --plyr-font-family: "微软雅黑", sans-serif;
-  /* 让Plyr控制栏适配容器高度 */
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
+  position: absolute !important;
+  top: 0;
+  left: 0;
 }
 
 :deep(.plyr__video-wrapper) {
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+:deep(.plyr__controls) {
+  width: 100%;
+  box-sizing: border-box;
 }
 </style>
