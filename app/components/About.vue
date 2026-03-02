@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-02-28 13:45:17
+ * @LastEditTime: 2026-03-02 14:27:49
  * @FilePath: \nuxt-free\app\components\About.vue
  * @Description: 
 -->
@@ -98,12 +98,12 @@ onMounted(() => {
   background: url("/images/about.png") no-repeat center center;
   width: 100%;
   height: 100%;
-  border: 2px solid blue;
+  // border: 2px solid blue;
   box-sizing: border-box;
 
   .more-icon-content {
     position: relative;
-    border: 3px solid green;
+    // border: 3px solid green;
     height: 8vh;
   }
 
@@ -127,7 +127,7 @@ onMounted(() => {
     width: 70%;
     height: 12vh;
     margin: 8vh 0 0vh 0;
-    border: 3px solid green;
+    // border: 3px solid green;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -136,7 +136,7 @@ onMounted(() => {
     .about-title-logo {
       width: 30%;
       height: 100%;
-      border: 2px solid red;
+      // border: 2px solid red;
       box-sizing: border-box;
       display: flex;
       flex-direction: row;
@@ -163,7 +163,7 @@ onMounted(() => {
       justify-content: center;
       align-items: center;
       width: 30%;
-      border: 2px solid red;
+      // border: 2px solid red;
       box-sizing: border-box;
       height: 100%;
 
@@ -181,7 +181,7 @@ onMounted(() => {
     .about-empty {
       width: 30%;
       height: 100%;
-      border: 2px solid red;
+      // border: 2px solid red;
       box-sizing: border-box;
     }
   }
@@ -193,13 +193,13 @@ onMounted(() => {
     align-items: center;
     width: 100%;
     height: 90%;
-    border: 4px solid red;
+    // border: 4px solid red;
     box-sizing: border-box;
     padding-left: 30px;
 
     .line-content {
       width: 70%;
-      border: 2px solid red;
+      // border: 2px solid red;
       box-sizing: border-box;
 
       .line-one-content {
@@ -208,19 +208,20 @@ onMounted(() => {
         .line-one-title {
           color: rgb(38, 8, 132);
           font-weight: bold;
+          font-size: 18px;
         }
       }
 
       .line-two-content {
         width: 80%;
-        border: 2px solid red;
+        // border: 2px solid red;
         box-sizing: border-box;
         margin-top: 3vh;
       }
 
       .line-three-content {
         width: 74%;
-        border: 2px solid red;
+        // border: 2px solid red;
         box-sizing: border-box;
         margin-top: 3vh;
       }
@@ -239,6 +240,6 @@ onMounted(() => {
 
 .line-two-item {
   margin-bottom: 0.2vh;
-  width: 80%;
+  width: 78%;
 }
 </style>

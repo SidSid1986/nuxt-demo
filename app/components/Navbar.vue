@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2025-10-24 10:04:15
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-02-27 11:02:01
+ * @LastEditTime: 2026-03-02 14:35:34
  * @FilePath: \nuxt-free\app\components\Navbar.vue
  * @Description: 
 -->
@@ -76,7 +76,7 @@ const handleClick = (index, item) => {
   justify-content: center;
   align-items: center;
   padding: 10px 20px;
-  border: 1px solid red;
+  // border: 1px solid red;
   box-sizing: border-box;
   height: 10vh;
 
@@ -86,12 +86,12 @@ const handleClick = (index, item) => {
     justify-content: flex-end;
     padding-right: 50px;
     width: 45%;
-    border: 1px solid green;
+    // border: 1px solid green;
     height: 100%;
     img {
       width: 160px;
       height: 100%;
-      border: 1px solid red;
+      // border: 1px solid red;
     }
     .nav-logo-text {
       display: flex;
@@ -103,14 +103,14 @@ const handleClick = (index, item) => {
         font-size: 30px;
         font-family: "隶书", serif;
         width: 380px;
-        border: 2px solid blue;
+        // border: 2px solid blue;
         text-align-last: justify;
       }
       .company-tag {
         font-size: 16px;
         font-family: Arial;
         width: 380px;
-        border: 2px solid blue;
+        // border: 2px solid blue;
         text-align-last: justify;
       }
     }
@@ -123,13 +123,13 @@ const handleClick = (index, item) => {
     align-items: center;
     .link-text {
       width:80px;
-      background-color: red;
+      // background-color: red;
       text-align: center;
       margin-right: 20px;
       font-size: 16px;
       font-family: "微软雅黑", serif;
     }
-    border: 1px solid green;
+    // border: 1px solid green;
   }
 }
 .active {

@@ -19,7 +19,6 @@
         v-for="(pageData, pageIndex) in treatData"
         :key="`page-${pageIndex}`"
       >
-        <!-- 新增：图片加载错误兜底 + 懒加载，避免请求中止 -->
         <img
           :src="pageData.url"
           alt="轮播图"
@@ -68,22 +67,24 @@ const props = defineProps({
   },
 });
 
-// 修复：数据更新后等待DOM渲染完成再赋值，避免初始化异常
 watch(
   () => props.swiperData,
   async (newVal) => {
-    console.log(newVal);
-    await nextTick(); // 等待DOM更新
+    // await nextTick();
     treatData.value = newVal || [];
+
+    if (swiperInstance.value) {
+      swiperInstance.value.autoplay.stop();
+      swiperInstance.value.autoplay.start();
+    }
   },
   { immediate: true, deep: true }
 );
 
 const emit = defineEmits(["swiperChange"]);
 
-// 新增：图片加载错误兜底，避免请求中止
 const handleImgError = (item) => {
-  item.url = "/images/default.png"; // 替换为默认图（需提前准备）
+  item.url = "/images/default.png";
 };
 
 const goPrev = () => {
@@ -123,21 +124,21 @@ defineExpose({
 <style scoped lang="scss">
 .swiper-main {
   width: 100%;
-  height: 100%; // 核心：继承父容器（carousel-container）的75vh高度
+  height: 100%;
   box-sizing: border-box;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   position: relative;
-  border: 1px solid red;
+  // border: 1px solid red;
   overflow: hidden;
 }
 
 .home-swiper {
   box-sizing: border-box;
   width: 100%;
-  height: 100%; // 继承父容器高度
+  height: 100%;
   color: #ffffff;
   font-size: 16px;
 
@@ -167,8 +168,8 @@ defineExpose({
   height: 100%;
   img {
     width: auto;
-    height: 100%; // 强制高度100%，宽度自适应
-    object-fit: cover; // 填充容器，避免变形
+    height: 100%;
+    object-fit: cover;
   }
 }
 

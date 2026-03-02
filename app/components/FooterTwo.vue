@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-28 15:12:20
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-02-28 15:49:32
+ * @LastEditTime: 2026-03-02 14:30:00
  * @FilePath: \nuxt-free\app\components\FooterTwo.vue
  * @Description: 
 -->
@@ -49,7 +49,7 @@ onMounted(() => {
 .footer-two-container {
   width: 100%;
   height: 10vh;
-  border: 4px solid red;
+  /* border: 4px solid red; */
   box-sizing: border-box;
   display: flex;
   justify-content: center;

@@ -41,7 +41,7 @@ onMounted(() => {
 <style scoped lang="scss">
 .footer-one-container {
   margin-top: 10vh;
-  border: 2px solid red;
+  // border: 2px solid red;
   box-sizing: border-box;
   height: 40vh;
   background: url("/images/footerBg.png") no-repeat;
@@ -56,7 +56,7 @@ onMounted(() => {
   .footer-content {
     width: 70%;
     height: 100%;
-    border: 2px solid yellow;
+    // border: 2px solid yellow;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -67,7 +67,7 @@ onMounted(() => {
     .footer-content-left {
       width: 48%;
       height: 100%;
-      border: 3px solid green;
+      // border: 3px solid green;
       box-sizing: border-box;
       padding: 0 10px;
       overflow: hidden;
@@ -114,7 +114,7 @@ onMounted(() => {
     .footer-content-right {
       width: 50%;
       height: 100%;
-      border: 3px solid blue;
+      // border: 3px solid blue;
       position: relative;
 
       .footer-one-text-contact-img {

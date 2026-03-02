@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 09:13:38
+ * @LastEditTime: 2026-03-02 14:33:52
  * @FilePath: \nuxt-free\app\components\MainProduct.vue
  * @Description: 
 -->
@@ -69,7 +69,7 @@ onMounted(() => {
 
   width: 100%;
   height: 100%;
-  border: 2px solid blue;
+  // border: 2px solid blue;
   box-sizing: border-box;
   .product-title {
     display: flex;
@@ -80,7 +80,7 @@ onMounted(() => {
 
     width: 100%;
     height: 10vh;
-    border: 2px solid red;
+    // border: 2px solid red;
     box-sizing: border-box;
     .title-zh {
       font-size: 30px;
@@ -97,7 +97,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: flex-end;
     width: 100%;
-    border: 2px solid red;
+    // border: 2px solid red;
     box-sizing: border-box;
 
     height: 45vh;
@@ -105,20 +105,21 @@ onMounted(() => {
     .product-content-left-img {
       width: 50%;
       height: 100%;
-      border: 3px solid green;
+      // border: 3px solid green;
       box-sizing: border-box;
     }
 
     .product-content-right {
       display: flex;
       flex-direction: column;
-      justify-content: center;
+      justify-content: space-between;
       align-items: start;
       padding-left: 20px;
       width: 50%;
       height: 100%;
-      border: 2px solid green;
+      // border: 2px solid green;
       box-sizing: border-box;
+      padding-top: 3vh;
 
       .product-title-zh {
         font-size: 30px;
@@ -126,7 +127,7 @@ onMounted(() => {
         color: #1262ad;
         height: 8vh;
         line-height: 8vh;
-        border: 1px solid red;
+        // border: 1px solid red;
       }
       .product-desc {
         padding: 0 0 4vh 0;
@@ -148,10 +149,10 @@ onMounted(() => {
         justify-content: space-between;
         align-items: center;
         width: 100%;
-        border: 2px solid red;
+        // border: 2px solid red;
         box-sizing: border-box;
         .product-desc-item {
-          border: 1px solid red;
+          // border: 1px solid red;
           display: flex;
           flex-direction: column;
           justify-content: center;
@@ -166,7 +167,7 @@ onMounted(() => {
       color: #1262ad;
       height: 3vh;
       line-height: 3vh;
-      border: 1px solid #1262ad;
+      // border: 1px solid #1262ad;
       cursor: pointer;
       padding: 0 10px;
     }

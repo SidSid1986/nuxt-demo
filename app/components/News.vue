@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 08:39:20
+ * @LastEditTime: 2026-03-02 15:07:14
  * @FilePath: \nuxt-free\app\components\News.vue
  * @Description: 
 -->
@@ -66,7 +66,7 @@ onMounted(() => {
 
   width: 100%;
   height: 100%;
-  border: 2px solid blue;
+  // border: 2px solid blue;
   box-sizing: border-box;
   .news-title {
     display: flex;
@@ -76,7 +76,7 @@ onMounted(() => {
     margin: 0vh 0 6vh 0;
     width: 100%;
     height: 10vh;
-    border: 2px solid red;
+    // border: 2px solid red;
     box-sizing: border-box;
     .title-zh {
       font-size: 30px;
@@ -95,7 +95,7 @@ onMounted(() => {
 
     width: 100%;
     height: auto;
-    border: 2px solid red;
+    // border: 2px solid red;
     box-sizing: border-box;
     .news-content-item {
       display: flex;
@@ -104,7 +104,7 @@ onMounted(() => {
       align-items: start;
       width: 30%;
       height: 100%;
-      border: 2px solid red;
+      // border: 2px solid red;
       box-sizing: border-box;
       border-radius: 10px;
       overflow: hidden;
@@ -114,7 +114,7 @@ onMounted(() => {
       img {
         width: 100%;
         height: 30vh;
-        border: 3px solid green;
+        // border: 3px solid green;
         box-sizing: border-box;
         // object-fit: cover;
         // object-position: center;
@@ -124,7 +124,7 @@ onMounted(() => {
         padding: 10px;
         width: 100%;
         height: 30%;
-        border: 3px solid green;
+        // border: 3px solid green;
         box-sizing: border-box;
         .news-title-zh {
           color: #333;

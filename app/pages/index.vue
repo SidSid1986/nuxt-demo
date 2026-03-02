@@ -64,7 +64,11 @@ import FooterTwo from "@/components/FooterTwo.vue";
 const router = useRouter();
 
 // 轮播数据
-const swiperData = ref([]);
+const swiperData = ref([
+  { id: 1, url: "/images/1.png" },
+  { id: 2, url: "/images/2.png" },
+  { id: 3, url: "/images/3.png" },
+]);
 const testIndex = ref(-1);
 
 // 回到顶部按钮核心逻辑
@@ -75,7 +79,7 @@ let scrollHandler = null;
 // 滚动监听
 const handleScroll = () => {
   const scrollTop = window.scrollY || document.documentElement.scrollTop;
-  console.log("实时滚动距离：", scrollTop);
+  // console.log("实时滚动距离：", scrollTop);
   isShowBackTop.value = scrollTop > scrollThreshold;
 };
 
@@ -89,13 +93,6 @@ const scrollToTop = () => {
 };
 
 onMounted(async () => {
-  await nextTick();
-  swiperData.value = [
-    { id: 1, url: "/images/1.png" },
-    { id: 2, url: "/images/2.png" },
-    { id: 3, url: "/images/3.png" },
-  ];
-
   scrollHandler = handleScroll;
   window.addEventListener("scroll", scrollHandler, {
     capture: true,
@@ -139,7 +136,7 @@ onUnmounted(() => {
   .carousel-container {
     height: 75vh;
     width: 100%;
-    border: 1px solid red;
+    // border: 1px solid red;
     margin-top: 2vh;
   }
   .main-business {
@@ -174,7 +171,7 @@ onUnmounted(() => {
 .horizon-container {
   position: fixed;
   bottom: 100px;
-  right: 30px;
+  right: 60px;
   width: 64px;
   height: 64px;
   overflow: hidden;

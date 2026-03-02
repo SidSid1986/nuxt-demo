@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-27 14:46:29
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 09:44:56
+ * @LastEditTime: 2026-03-02 14:28:46
  * @FilePath: \nuxt-free\app\components\Demo.vue
  * @Description: 
 -->
@@ -101,7 +101,7 @@ onMounted(() => {
 
   width: 100%;
   height: 100%;
-  border: 2px solid blue;
+  // border: 2px solid blue;
   box-sizing: border-box;
   .demo-title {
     display: flex;
@@ -112,7 +112,7 @@ onMounted(() => {
 
     width: 100%;
     height: 10vh;
-    border: 2px solid red;
+    // border: 2px solid red;
     box-sizing: border-box;
     .title-zh {
       font-size: 30px;
@@ -129,7 +129,7 @@ onMounted(() => {
     justify-content: space-between;
     align-items: center;
     width: 100%;
-    border: 2px solid red;
+    // border: 2px solid red;
     box-sizing: border-box;
     .tab-item {
       width: 200px;
@@ -137,7 +137,7 @@ onMounted(() => {
       flex-direction: row;
       justify-content: space-between;
       align-items: center;
-      border: 2px solid green;
+      // border: 2px solid green;
       position: relative;
 
       .tab-border {
@@ -164,7 +164,7 @@ onMounted(() => {
 
     .tab-content-container {
       width: 100%;
-      border: 2px solid red;
+      // border: 2px solid red;
       box-sizing: border-box;
       display: flex;
       flex-direction: column;
@@ -179,19 +179,19 @@ onMounted(() => {
         justify-content: center;
         align-items: center;
 
-        border: 3px solid yellow;
+        // border: 3px solid yellow;
         width: 100%;
 
         .img-left {
           height: 70vh;
           width: 52%;
-          border: 2px solid green;
+          // border: 2px solid green;
         }
 
         .img-right {
           height: 70vh;
           width: 48%;
-          border: 2px solid green;
+          // border: 2px solid green;
           padding: 2vh 0 0 5vh;
           display: flex;
           flex-direction: column;
@@ -213,7 +213,7 @@ onMounted(() => {
           img {
             width: 100%;
             height: 28vh;
-            border: 2px solid blue;
+            // border: 2px solid blue;
             object-fit: contain;
           }
         }
@@ -222,7 +222,7 @@ onMounted(() => {
       .tab-content-2 {
         margin-top: 2vh;
         height: 75vh;
-        border: 3px solid yellow;
+        // border: 3px solid yellow;
         width: 100%;
         display: flex;
         flex-direction: row;
