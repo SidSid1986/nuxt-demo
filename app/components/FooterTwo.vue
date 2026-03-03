@@ -2,7 +2,7 @@
  * @Author: Sid Li
  * @Date: 2026-02-28 15:12:20
  * @LastEditors: Sid Li
- * @LastEditTime: 2026-03-02 16:28:27
+ * @LastEditTime: 2026-03-02 16:37:26
  * @FilePath: \nuxt-free\app\components\FooterTwo.vue
  * @Description: 
 -->

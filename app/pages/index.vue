@@ -1,8 +1,8 @@
 <template>
-  <!-- 模板部分完全保留你原来的代码，无需改动 -->
+ 
   <div class="index-container">
     <div class="nav-container">
-      <Navbar />
+      <Navbar   />   
     </div>
     <div class="carousel-container">
       <IndexSwiper
@@ -13,7 +13,7 @@
     </div>
 
     <div class="main-business">
-      <MainBusiness />
+      <MainBusiness   />
     </div>
 
     <div class="main-product">
